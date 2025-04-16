@@ -1,0 +1,56 @@
+# Email Campaign Analysis Configuration
+
+# Data paths
+data:
+  email_table: "email (1)/email_table.csv"
+  opened_table: "email (1)/email_opened_table.csv"
+  clicked_table: "email (1)/link_clicked_table.csv"
+  output_dir: "output"
+
+# Analysis parameters
+analysis:
+  min_segment_size: 100
+  min_timing_samples: 50
+  random_state: 42
+  test_size: 0.3
+
+# Model parameters
+model:
+  type: "random_forest"
+  params:
+    n_estimators: 100
+    max_depth: 10
+    min_samples_split: 10
+    min_samples_leaf: 5
+    random_state: 42
+    n_jobs: -1
+
+# Feature engineering
+features:
+  categorical_cols:
+    - "email_text"
+    - "email_version"
+    - "weekday"
+    - "user_country"
+  purchase_bins:
+    - -1
+    - 0
+    - 1
+    - 3
+    - 5
+    - 10
+    - 100
+  purchase_labels:
+    - "0"
+    - "1"
+    - "2-3"
+    - "4-5"
+    - "6-10"
+    - "11+"
+    
+# Visualization settings
+visualization:
+  dpi: 300
+  figsize: [10, 6]
+  palette: "viridis"
+  save_format: "png" 
